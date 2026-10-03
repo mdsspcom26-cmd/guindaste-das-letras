@@ -1,55 +1,49 @@
 # 🏗️ Guindaste das Letras - Alfabetização e Pensamento Computacional
 
 [![BNCC Computação](https://img.shields.io/badge/BNCC--Computa%C3%A7%C3%A3o-EF01CO01%20%7C%20EF01CO02-indigo)](https://basenacionalcomum.mec.gov.br/)
+[![DUA Acessibilidade Surdos](https://img.shields.io/badge/DUA-Acessibilidade%20Surdos-emerald)](index.html)
 [![Língua Portuguesa](https://img.shields.io/badge/BNCC--L%C3%ADngua%20Portuguesa-EF01LP02%20%7C%20EF01LP08-sky)](https://basenacionalcomum.mec.gov.br/)
-[![Tecnologia](https://img.shields.io/badge/HTML5-JS%20Vanilla%20%7C%20TailwindCSS-amber)](index.html)
 
-**Guindaste das Letras** é um jogo educativo interativo desenvolvido para apoiar o processo de alfabetização de crianças (Educação Infantil e 1º ano do Ensino Fundamental) integrando conceitos de **Pensamento Computacional** e **Língua Portuguesa**, em estrita conformidade com as diretrizes da **BNCC (Base Nacional Comum Curricular)**.
-
-No jogo, o aluno opera um guindaste magnético real em uma grade matricial **4x3** para buscar, capturar e organizar letras, construindo palavras de forma lógica, sequencial e desafiadora.
+**Guindaste das Letras** é um jogo educativo interativo desenvolvido para apoiar o processo de alfabetização de crianças (Educação Infantil e 1º ano do Ensino Fundamental) integrando conceitos de **Pensamento Computacional**, **Língua Portuguesa** e **Acessibilidade DUA (Desenho Universal para a Aprendizagem para Alunos Surdos)**, em estrita conformidade com as diretrizes da **BNCC (Base Nacional Comum Curricular)**.
 
 ---
 
-## 🆕 Atualizações Recentes
+## 🆕 Atualizações de Acessibilidade DUA, Garra Mecânica e Transição de Nível
 
-- 🏗️ **Guindaste Físico Animado (Trolley & Cabo de Aço):** Ao acionar o D-Pad ou as setas do teclado, o **trolley (carro de aço)** desliza no braço superior do guindaste e o **cabo de aço se estica verticalmente até a garra magnética**, acompanhando exatamente a posição da célula na matriz 4x3!
-- 🔊 **Mensagem de Erro Falada em Voz Alta (Web Speech API):** Quando a criança seleciona uma letra incorreta, o jogo **envia e pronuncia em voz alta a mensagem de erro pedagógica** (`"Ops! A letra X não é a correta para este passo. Tente outra posição na grade!"`), acompanhada de um alerta visual pulsante.
-- 🖼️ **Imagens Fotorrealistas 3D Cute (Nível 1 - Encontros Vocálicos):**
-  - **EU:** Menininha 3D fotorrealista sorridente apontando para si mesma.
-  - **OI:** Menino 3D fotorrealista acenando feliz.
-  - **UI:** Menino 3D fotorrealista com expressão divertida de surpresa.
-  - **IA:** Menina 3D fotorrealista passeando no caminho do parque.
-  - **AI:** Menino 3D fotorrealista olhando para o curativo no dedinho.
-  - **EI:** Menino 3D fotorrealista chamando um amigo com a mão na boca.
-  - **Nenhuma imagem contém palavras ou spoilers escritos!**
-- 🎲 **Embaralhamento Aleatório Real (Fisher-Yates):** As letras na grade 4x3 são espalhadas aleatoriamente a cada partida. A resposta **nunca aparece em ordem sequencial**, exigindo busca, varredura matricial e raciocínio lógico pelo aluno.
-- 🙈 **Interação e Consumo de Letras:** Ao capturar a letra correta com a garra, ela **desaparece da grade 4x3**, incentivando a exploração ativa do tabuleiro restante.
-- 🏆 **Modal de Transição de Nível e Vitória Final:** Ao concluir o Nível 1, um modal pergunta se o aluno deseja avançar para o Nível 2 ou repetir o Nível 1.
+- 🦾 **Controle e Seletor com GARRA MECÂNICA (Substituição do Ímã):**
+  - O botão de ação e o seletor da matriz foram atualizados para representar fielmente a **GARRA MECÂNICA DE GUINDASTE (`🦾 PEGAR GARRA`)**.
+- 🤟 **Acessibilidade DUA (Desenho Universal para Aprendizagem - Alunos Surdos):**
+  - **Visualização de Erro (`⚠️ ATENÇÃO! LETRA INCORRETA`):** Para garantir autonomia a crianças surdas ou com deficiência auditiva, quando a garra pega uma letra incorreta, a tela ativa um **cartão de alerta vermelho pulsante de alta visibilidade com sacudida de atenção** (`bg-red-600 text-white border-4 border-yellow-300 animate-bounce`), além de piscar a célula alvo em vermelho.
+  - **Visualização de Acerto (`✅ MUITO BEM! LETRA ENCAIXADA!`):** Ao acertar a letra, a interface emite um **banner verde vibrante de celebração visual** (`bg-emerald-600 border-4 border-emerald-300 animate-pulse`) com checkmark verde (`✅`) nos slots e na matriz.
+- 🚀 **Transmissão Transparente de Mudança de Nível:**
+  - Ao concluir a 8ª palavra do Nível 1 (Encontros Vocálicos), o jogo abre o modal de transmissão **`#modal-level-complete`**, parabenizando o aluno pelas conquistas BNCC e permitindo que ele decida explicitamente se deseja avançar para o Nível 2 ou repetir o Nível 1.
+- 🖼️ **Imagem Fotorrealista 3D do 'EIA':**
+  - Adicionada a ilustração 3D fotorrealista estilo Pixar do garotinho sorridente cavalgando no cavalo de pau (`EIA`), sem qualquer texto de spoiler.
 
 ---
 
-## 🎯 Alinhamento Explícito com a BNCC Computação
+## 🎯 Alinhamento Explícito com a BNCC Computação & DUA
 
-| Etapa no Jogo | Habilidade BNCC Computação | Descrição Pedagógica |
+| Etapa no Jogo | Habilidade BNCC Computação | Recursos DUA para Alunos Surdos |
 | :--- | :--- | :--- |
-| **Operação do Guindaste (D-Pad / Teclado)** | **`EF01CO01`** | Criar e seguir algoritmos em malha cartesiana ($X, Y$) movimentando o trolley e o cabo de aço. |
-| **Varredura da Matriz Embaralhada** | **`EF01CO02`** | Reconhecimento de padrões gráficos na grade 4x3 não-sequencial. |
-| **Análise da Palavra & Slots** | **`EF01CO02`** | Decomposição do problema principal (palavra inteira) em partes discretas. |
-| **Captura de Letras (PEGAR 🧲)** | **`EF01CO02`** | Validação de grafema e consumo da letrinha na matriz. |
-| **Erro de Seleção** | **Depuração Formativa** | Feedback sonoro e falado em voz alta (*Debugging*), orientando o teste de novas hipóteses. |
+| **Operação da Garra (D-Pad / Teclado)** | **`EF01CO01`** | Deslocamento do trolley e cabo de aço visíveis na malha 4x3 ($X, Y$). |
+| **Varredura da Matriz Embaralhada** | **`EF01CO02`** | Associação direta entre a imagem 3D grande e a representação gráfica. |
+| **Captura de Letras (PEGAR GARRA 🦾)** | **`EF01CO02`** | Animação da garra mecânica descendo e consumindo a letrinha na matriz. |
+| **Erro de Seleção** | **Depuração Formativa** | **Alerta DUA Vermelho Pulsante (`⚠️ ATENÇÃO!`)** + narração em áudio. |
+| **Acerto de Seleção** | **Confirmação Algorítmica** | **Banner DUA Verde Vibrante (`✅ MUITO BEM!`)** + checkmark visual. |
 
 ---
 
 ## 🎮 Níveis e Palavras Disponíveis
 
 ### Nível 1 — Encontros Vocálicos (8 Desafios)
-* **EU** (Menininha 3D apontando para si)
+* **EU** (Menininga 3D apontando para si)
 * **OI** (Menino 3D acenando feliz)
 * **UI** (Menino 3D surpreso)
 * **IA** (Menina 3D passeando no parque)
 * **AI** (Menino 3D com curativo no dedo)
 * **EI** (Menino 3D chamando um amigo)
-* **EIA** (Cavalgando de cowboy)
+* **EIA** (Garotinho 3D no cavalo de pau)
 * **BOI** (Boi felpudo no campo)
 
 ### Nível 2 — Palavras Dissílabas Canônicas (7 Desafios)
@@ -67,26 +61,12 @@ No jogo, o aluno opera um guindaste magnético real em uma grade matricial **4x3
 
 | Ação | Painel na Tela | Teclado Físico |
 | :--- | :--- | :--- |
-| **Mover Guindaste para Cima** | Botão `⬆️` (D-Pad) | `Seta Para Cima` / `W` |
-| **Mover Guindaste para Baixo** | Botão `⬇️` (D-Pad) | `Seta Para Baixo` / `S` |
-| **Mover Guindaste para Esquerda** | Botão `⬅️` (D-Pad) | `Seta Para Esquerda` / `A` |
-| **Mover Guindaste para Direita** | Botão `➡️` (D-Pad) | `Seta Para Direita` / `D` |
-| **Pegar Letra** | Botão `🧲 PEGAR` | `Espaço` / `Enter` |
+| **Mover Garra para Cima** | Botão `⬆️` (D-Pad) | `Seta Para Cima` / `W` |
+| **Mover Garra para Baixo** | Botão `⬇️` (D-Pad) | `Seta Para Baixo` / `S` |
+| **Mover Garra para Esquerda** | Botão `⬅️` (D-Pad) | `Seta Para Esquerda` / `A` |
+| **Mover Garra para Direita** | Botão `➡️` (D-Pad) | `Seta Para Direita` / `D` |
+| **Pegar com a Garra** | Botão `🦾 PEGAR (GARRA)` | `Espaço` / `Enter` |
 | **Seleção Direta** | Toque na célula na grade 4x3 | Clique de Mouse |
-
----
-
-## 📁 Estrutura de Arquivos
-
-```text
-Guindaste/
-├── index.html         # Interface com braço do guindaste, trolley, cabo de aço e modais
-├── js/
-│   ├── data.js        # Banco de dados pedagógico com imagens 3D fotorrealistas Cute sem spoilers
-│   ├── audio.js       # Síntese Web Audio API (sons) e Web Speech API (síntese de voz em voz alta)
-│   └── game.js        # Lógica do guindaste, trolley, cabo de aço, embaralhamento e depuração falada
-└── README.md          # Documentação do projeto
-```
 
 ---
 

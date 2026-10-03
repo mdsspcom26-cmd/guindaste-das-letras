@@ -109,132 +109,148 @@
           <!-- Slots serão injetados dinamicamente via JS -->
         </div>
       </div>
+      
+      <!-- Habilidade BNCC Computação Explícita -->
+      <div id="bncc-skill-tag" class="text-xs font-black px-3 py-1 rounded-xl bg-indigo-950 text-indigo-300 border border-indigo-500/60 flex items-center space-x-1.5 shadow">
+        <span>🤖</span>
+        <span id="bncc-skill-text">BNCC EF01CO01: Navegação Matricial</span>
+      </div>
+
       <!-- Dica de depuração / Mensagem de status -->
       <div id="status-message" class="text-sm font-bold text-amber-300 bg-slate-900/60 px-3 py-1 rounded-lg border border-amber-500/30 min-h-[32px] flex items-center">
-        🎯 Use o guindaste para escolher a primeira letra!
+        🎯 Use o guindaste para escolher as letras!
       </div>
     </div>
 
-    <!-- TABULEIRO PRINCIPAL: PAINEL AZUL | GUINDASTE CENTRAL | PAINEL ROSA -->
+    <!-- TABULEIRO PRINCIPAL: ESTRUTURA DO GUINDASTE INTEGRADO + MALHA 4x3 | MODELO DE REFERÊNCIA EXPANDIDO -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-3 items-stretch">
       
-      <!-- PAINEL AZUL (ESQUERDA) - MALHA 4x3 DE LEITURA E SELEÇÃO -->
-      <section class="lg:col-span-6 bg-gradient-to-b from-sky-900 to-indigo-950 border-4 border-sky-500 rounded-3xl p-3 sm:p-4 shadow-xl flex flex-col justify-between max-w-full">
+      <!-- PAINEL AZUL COM ESTRUTURA REAL DO GUINDASTE (LANÇA SUPERIOR, TORRE E CAMINHÃO BASE) -->
+      <section class="lg:col-span-7 bg-gradient-to-b from-sky-900 via-indigo-950 to-slate-900 border-4 border-sky-500 rounded-3xl p-3 sm:p-4 shadow-2xl flex flex-col justify-between max-w-full relative">
         
+        <!-- Cabeçalho do Painel -->
         <div class="flex items-center justify-between mb-2">
           <div class="flex items-center space-x-2">
-            <span class="w-3 h-3 rounded-full bg-sky-400 animate-ping"></span>
-            <h2 class="text-sky-200 font-black text-sm uppercase tracking-wider">
-              Painel de Seleção (4x3)
+            <span class="w-3 h-3 rounded-full bg-amber-400 animate-ping"></span>
+            <h2 class="text-amber-300 font-black text-sm uppercase tracking-wider flex items-center space-x-1.5">
+              <span>🏗️</span>
+              <span>Guindaste das Letras (Malha 4x3)</span>
             </h2>
           </div>
-          <div class="flex items-center space-x-1 text-xs text-sky-300 bg-sky-950/80 px-2 py-1 rounded-lg border border-sky-700">
-            <span>💡 Dica de Campo</span>
+          <div class="flex items-center space-x-1 text-xs text-amber-300 bg-amber-950/80 px-2 py-1 rounded-lg border border-amber-600/50">
+            <span>💡 Operação por Coordenadas</span>
           </div>
         </div>
 
-        <!-- Grade Quadriculada 4x3 com Posição Relativa para o Seletor Magnético -->
-        <div id="grid-container" class="relative grid grid-cols-4 gap-2 sm:gap-3 bg-sky-950/60 p-2 sm:p-3 rounded-2xl border-2 border-sky-700/50 max-w-full aspect-[4/3]">
+        <!-- CONTEÚDO PRINCIPAL DO TABULEIRO DE OPERAÇÃO (GRADE + TORRE DO GUINDASTE INTEGRADA) -->
+        <div class="flex flex-col md:flex-row items-stretch gap-2 relative">
           
-          <!-- Seletor Magnético do Guindaste (Red Corners) -->
-          <div id="magnet-selector" class="magnet-selector absolute z-20 border-2 border-red-500 bg-red-500/10 pointer-events-none rounded-xl">
-            <div class="red-corner corner-tl"></div>
-            <div class="red-corner corner-tr"></div>
-            <div class="red-corner corner-bl"></div>
-            <div class="red-corner corner-br"></div>
-            <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-red-600 text-[10px] text-white font-black px-1.5 py-0.5 rounded shadow uppercase">
-              🧲 Garra
+          <!-- ÁREA DO BOARD DA GRADE 4X3 COM A LANÇA DO GUINDASTE QUE ATRAVESSA DE PONTA A PONTA -->
+          <div class="flex-1 relative pt-8">
+            
+            <!-- LANÇA HORIZONTAL SUPERIOR DO GUINDASTE (AMARELA PERFURADA QUE ATRAVESSA A GRADE - IGUAL À FIGURA 2) -->
+            <div id="crane-boom-arm" class="absolute top-0 left-0 right-0 h-7 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 border-4 border-amber-800 rounded-xl z-30 shadow-xl flex items-center justify-around px-2 pointer-events-none">
+              <div class="w-3.5 h-3.5 rounded-full bg-amber-900/70 border border-amber-950"></div>
+              <div class="w-3.5 h-3.5 rounded-full bg-amber-900/70 border border-amber-950"></div>
+              <div class="w-3.5 h-3.5 rounded-full bg-amber-900/70 border border-amber-950"></div>
+              <div class="w-3.5 h-3.5 rounded-full bg-amber-900/70 border border-amber-950"></div>
+              <div class="w-3.5 h-3.5 rounded-full bg-amber-900/70 border border-amber-950"></div>
+              <div class="w-3.5 h-3.5 rounded-full bg-amber-900/70 border border-amber-950"></div>
+              <div class="w-4 h-4 rounded-full bg-sky-500 border-2 border-slate-900"></div>
+              
+              <!-- Carro Móvel do Guindaste (Trolley) no Braço Horizontal -->
+              <div id="crane-trolley" class="absolute -top-1 h-8 w-11 bg-slate-900 border-2 border-amber-400 rounded-b-lg shadow-2xl transition-all duration-300 z-30 flex items-center justify-around px-1 pointer-events-auto">
+                <div class="w-2 h-2 rounded-full bg-amber-400"></div>
+                <div class="w-2 h-2 rounded-full bg-amber-400"></div>
+              </div>
+            </div>
+
+            <!-- CABO DE AÇO ESTENSÍVEL (CONECTA A LANÇA SUPERIOR DIRETO À GARRA NA GRADE) -->
+            <div id="crane-cable-line" class="absolute w-1 bg-gradient-to-b from-amber-400 via-slate-200 to-red-500 z-25 pointer-events-none transition-all duration-300 shadow-lg" style="top: 28px; height: 60px; left: 50%;"></div>
+
+            <!-- GRADE QUADRICULADA 4X3 -->
+            <div id="grid-container" class="relative grid grid-cols-4 gap-2 sm:gap-3 bg-sky-950/70 p-2 sm:p-3 rounded-2xl border-4 border-sky-700/60 max-w-full aspect-[4/3] shadow-inner">
+              
+              <!-- SELETOR MAGNÉTICO DO GUINDASTE (GARRA COM CANTONEIRAS VERMELHAS) -->
+              <div id="magnet-selector" class="magnet-selector absolute z-20 border-2 border-red-500 bg-red-500/10 pointer-events-none rounded-xl">
+                <div class="red-corner corner-tl"></div>
+                <div class="red-corner corner-tr"></div>
+                <div class="red-corner corner-bl"></div>
+                <div class="red-corner corner-br"></div>
+                <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-red-600 text-[10px] text-white font-black px-2 py-0.5 rounded-full shadow-lg uppercase border border-red-400 tracking-wider flex items-center space-x-1">
+                  <span>🦾</span>
+                  <span>GARRA</span>
+                </div>
+              </div>
+
+              <!-- As 12 células (4 colunas x 3 linhas) serão geradas via JS -->
             </div>
           </div>
 
-          <!-- As 12 células (4 colunas x 3 linhas) serão geradas via JS -->
+          <!-- TORRE VERTICAL DO GUINDASTE E BASE DO CAMINHÃO (IGUAL À FIGURA 2) -->
+          <div class="w-full md:w-20 flex flex-col justify-between items-center py-1 bg-slate-800/80 p-2 rounded-2xl border-2 border-amber-500/50 shadow-lg">
+            
+            <!-- Torre Vertical Amarela Perfurada com Conectores Azuis -->
+            <div class="w-full flex-1 bg-gradient-to-b from-amber-400 via-amber-500 to-amber-600 border-4 border-amber-800 rounded-xl shadow-inner flex flex-col justify-around items-center py-2 min-h-[140px]">
+              <div class="w-4 h-4 rounded-full bg-amber-900/60 border border-amber-950"></div>
+              <div class="w-4 h-4 rounded-full bg-amber-900/60 border border-amber-950"></div>
+              <div class="w-4 h-4 rounded-full bg-amber-900/60 border border-amber-950"></div>
+              <div class="w-4 h-4 rounded-full bg-amber-900/60 border border-amber-950"></div>
+              <div class="w-5 h-5 rounded-full bg-sky-500 border-2 border-slate-900 shadow"></div>
+            </div>
+
+            <!-- Base do Guindaste / Caminhão Laranja com Rodas Azuis e Contrapeso -->
+            <div class="w-full bg-orange-600 border-2 border-orange-800 rounded-xl p-1.5 mt-2 shadow-lg text-center">
+              <span class="text-[9px] font-black text-orange-200 uppercase block leading-tight">Contrapeso</span>
+              <div class="flex justify-around items-center mt-1">
+                <div class="w-5 h-5 rounded-full bg-sky-500 border-2 border-slate-900 shadow-inner flex items-center justify-center">
+                  <div class="w-1.5 h-1.5 rounded-full bg-white"></div>
+                </div>
+                <div class="w-5 h-5 rounded-full bg-sky-500 border-2 border-slate-900 shadow-inner flex items-center justify-center">
+                  <div class="w-1.5 h-1.5 rounded-full bg-white"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
 
         <div class="mt-2 text-center text-xs text-sky-300/80 font-medium">
           Posição ativa do seletor: Coluna <span id="pos-x" class="font-bold text-amber-400">1</span>, Linha <span id="pos-y" class="font-bold text-amber-400">1</span>
         </div>
-      </section>
-
-
-      <!-- GUINDASTE CENTRAL - ESTRUTURA VISUAL E CABO DE AÇO -->
-      <section class="lg:col-span-2 bg-slate-800/90 border-4 border-amber-500 rounded-3xl p-3 shadow-xl flex flex-col items-center justify-between relative min-h-[220px] overflow-hidden">
         
-        <!-- Braço Superior Amarelo Perfurado -->
-        <div class="w-full bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 h-8 rounded-lg border-2 border-amber-700 flex items-center justify-around px-2 shadow-inner relative z-10">
-          <div class="w-3 h-3 rounded-full bg-amber-800/40 border border-amber-900"></div>
-          <div class="w-3 h-3 rounded-full bg-amber-800/40 border border-amber-900"></div>
-          <div class="w-3 h-3 rounded-full bg-amber-800/40 border border-amber-900"></div>
-          <div class="w-3 h-3 rounded-full bg-amber-800/40 border border-amber-900"></div>
-          <div class="w-3 h-3 rounded-full bg-amber-800/40 border border-amber-900"></div>
-        </div>
-
-        <!-- Torre Vertical Amarela + Cabo Extensível -->
-        <div class="relative w-full flex-1 my-2 flex items-center justify-center">
-          <div class="w-6 h-full bg-gradient-to-b from-amber-500 to-amber-600 border-2 border-amber-700 rounded-sm relative shadow flex flex-col justify-between py-1">
-            <div class="w-full h-0.5 bg-amber-800/50"></div>
-            <div class="w-full h-0.5 bg-amber-800/50"></div>
-            <div class="w-full h-0.5 bg-amber-800/50"></div>
-            <div class="w-full h-0.5 bg-amber-800/50"></div>
-          </div>
-          
-          <div class="absolute inset-0 flex flex-col items-center justify-center">
-            <div id="crane-status-icon" class="text-4xl animate-bounce">
-              🏗️
-            </div>
-            <span class="text-[10px] font-black text-amber-300 uppercase tracking-widest bg-slate-900/80 px-2 py-0.5 rounded-full border border-amber-500/40 mt-1">
-              Guindaste OK
-            </span>
-          </div>
-        </div>
-
-        <!-- Base / Caminhão Laranja com Rodas Azuis e Contrapeso -->
-        <div class="w-full bg-orange-600 border-2 border-orange-800 rounded-xl p-2 relative shadow-lg">
-          <div class="flex items-center justify-between mb-1">
-            <span class="text-[10px] font-black text-orange-200 uppercase">Contrapeso</span>
-            <div class="w-4 h-4 bg-slate-700 rounded border border-slate-900"></div>
-          </div>
-          <div class="flex justify-around">
-            <div class="w-6 h-6 rounded-full bg-sky-500 border-2 border-slate-900 shadow-inner flex items-center justify-center">
-              <div class="w-2 h-2 rounded-full bg-white"></div>
-            </div>
-            <div class="w-6 h-6 rounded-full bg-sky-500 border-2 border-slate-900 shadow-inner flex items-center justify-center">
-              <div class="w-2 h-2 rounded-full bg-white"></div>
-            </div>
-          </div>
-        </div>
-
       </section>
 
 
-      <!-- PAINEL ROSA (DIREITA) - MODELO DE REFERÊNCIA E ESTÍMULO VISUAL -->
-      <section class="lg:col-span-4 bg-gradient-to-b from-pink-900 to-rose-950 border-4 border-pink-500 rounded-3xl p-3 sm:p-4 shadow-xl flex flex-col justify-between max-w-full">
+      <!-- PAINEL ROSA (DIREITA) - MODELO DE REFERÊNCIA COM IMAGENS GRANDES E DESTACADAS -->
+      <section class="lg:col-span-5 bg-gradient-to-b from-pink-900 to-rose-950 border-4 border-pink-500 rounded-3xl p-3 sm:p-5 shadow-2xl flex flex-col justify-between max-w-full">
         
         <div class="flex items-center justify-between mb-2">
           <div class="flex items-center space-x-2">
-            <span class="w-3 h-3 rounded-full bg-pink-400"></span>
-            <h2 class="text-pink-200 font-black text-sm uppercase tracking-wider">
+            <span class="w-3.5 h-3.5 rounded-full bg-pink-400 animate-pulse"></span>
+            <h2 class="text-pink-200 font-black text-base uppercase tracking-wider">
               Modelo de Referência
             </h2>
           </div>
-          <button id="btn-listen" class="bg-pink-600 hover:bg-pink-500 active:scale-95 transition text-white px-3 py-1 rounded-xl text-xs font-black flex items-center space-x-1.5 shadow border-b-2 border-pink-800">
-            <span>🔊</span>
-            <span>Ouvir</span>
+          <button id="btn-listen" class="bg-pink-600 hover:bg-pink-500 active:scale-95 transition text-white px-4 py-1.5 rounded-xl text-xs font-black flex items-center space-x-1.5 shadow-lg border-b-2 border-pink-800">
+            <span class="text-sm">🔊</span>
+            <span>Ouvir Som</span>
           </button>
         </div>
 
-        <!-- Quadro da Ilustração Principal -->
-        <div class="bg-pink-950/80 border-2 border-pink-700/60 rounded-2xl p-4 flex flex-col items-center justify-center my-2 min-h-[160px] shadow-inner relative max-w-full aspect-[4/3]">
-          <div id="illustration-container" class="w-32 h-32 flex items-center justify-center">
-            <!-- SVG da ilustração será injetado via JS -->
+        <!-- Quadro da Ilustração Principal (EXPANDIDO PARA IMAGENS GRANDES E VISÍVEIS) -->
+        <div class="bg-pink-950/80 border-4 border-pink-700/60 rounded-3xl p-3 flex flex-col items-center justify-center my-2 min-h-[240px] max-h-[340px] shadow-inner relative max-w-full aspect-square">
+          <div id="illustration-container" class="w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72 max-w-full max-h-full flex items-center justify-center overflow-hidden">
+            <!-- Imagem 3D Fotorrealista Grande injetada via JS -->
           </div>
-          <div id="illustration-label" class="mt-2 text-sm font-extrabold text-pink-200 text-center">
+          <div id="illustration-label" class="mt-2 text-base sm:text-lg font-black text-pink-200 text-center tracking-wide">
             --
           </div>
         </div>
 
-        <div class="bg-pink-900/50 rounded-xl p-2 border border-pink-700/40 text-center">
-          <p id="pedagogical-hint" class="text-xs text-pink-200 font-semibold">
-            Escute o som da palavra e encontre as letras na grade azul!
+        <div class="bg-pink-900/60 rounded-2xl p-2.5 border border-pink-700/50 text-center shadow">
+          <p id="pedagogical-hint" class="text-xs sm:text-sm text-pink-100 font-bold">
+            Escute a palavra e mova o guindaste para buscar as letras na grade!
           </p>
         </div>
 
@@ -308,10 +324,13 @@
           <div></div>
         </div>
 
-        <!-- BOTÃO DE AÇÃO "PEGAR 🧲" -->
-        <button id="btn-grab" class="h-40 px-5 bg-gradient-to-b from-red-500 to-red-700 hover:from-red-400 hover:to-red-600 active:scale-95 text-white font-black text-xl rounded-2xl shadow-xl border-b-4 border-red-900 flex flex-col items-center justify-center space-y-1 transition group min-w-[80px]">
-          <span class="text-4xl group-hover:scale-110 transition transform">🧲</span>
-          <span class="tracking-wide">PEGAR</span>
+        <!-- BOTÃO DE AÇÃO "PEGAR GARRA 🦾" (ATENDE DUA E ESPECIFICAÇÃO DE GARRA MECÂNICA) -->
+        <button id="btn-grab" class="h-40 px-5 bg-gradient-to-b from-red-500 via-red-600 to-red-800 hover:from-red-400 hover:to-red-700 active:scale-95 text-white font-black text-lg sm:text-xl rounded-2xl shadow-2xl border-b-4 border-red-950 flex flex-col items-center justify-center space-y-1 transition group min-w-[90px] border-2 border-red-400/50">
+          <span class="text-4xl group-hover:scale-125 transition transform">🦾</span>
+          <span class="tracking-wide text-center leading-tight">
+            PEGAR<br/>
+            <span class="text-[10px] font-extrabold text-amber-300 tracking-widest uppercase">(GARRA)</span>
+          </span>
         </button>
 
       </div>
@@ -320,7 +339,7 @@
   </footer>
 
 
-  <!-- MODAL 1: GUIA PEDAGÓGICO BNCC -->
+  <!-- MODAL 1: GUIA PEDAGÓGICO BNCC DA COMPUTAÇÃO -->
   <div id="modal-bncc" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-slate-800 border-4 border-indigo-500 rounded-3xl max-w-2xl w-full p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
       <button id="close-modal-bncc" class="absolute top-4 right-4 text-slate-400 hover:text-white text-2xl font-bold">
@@ -330,33 +349,42 @@
       <div class="flex items-center space-x-3 mb-4">
         <span class="text-4xl">📘</span>
         <div>
-          <h2 class="text-2xl font-black text-indigo-400">Guia Pedagógico BNCC Computação</h2>
-          <p class="text-xs text-slate-300">Alinhamento curricular para a Educação Infantil e 1º ano do Ensino Fundamental</p>
+          <h2 class="text-2xl font-black text-indigo-400">Mapeamento BNCC Computação por Etapa</h2>
+          <p class="text-xs text-slate-300">Conformidade curricular explícita para Educação Infantil e 1º ano do Ensino Fundamental</p>
         </div>
       </div>
 
       <div class="space-y-4 text-sm text-slate-200">
-        <div class="bg-indigo-950/60 p-4 rounded-xl border border-indigo-700/50">
-          <h3 class="font-extrabold text-amber-300 text-base mb-1">🤖 Habilidades de Pensamento Computacional</h3>
-          <ul class="list-disc list-inside space-y-2 text-slate-300">
-            <li><strong class="text-white">EF01CO01:</strong> Criar e seguir algoritmos compostos por sequências de passos discretos para resolver problemas em malhas matriciais/cartesianas (ex.: controle do guindaste célula a célula).</li>
-            <li><strong class="text-white">EF01CO02:</strong> Decompor um problema complexo (escrita de uma palavra completa) em partes menores e ordenadas (identificação e captura do próximo fonema/caractere).</li>
-          </ul>
+        <div class="bg-indigo-950/60 p-4 rounded-xl border border-indigo-700/50 space-y-2">
+          <h3 class="font-extrabold text-amber-300 text-base mb-1">🤖 Habilidades de Pensamento Computacional Explícitas</h3>
+          
+          <div class="bg-indigo-900/40 p-2.5 rounded-lg border border-indigo-700/40">
+            <strong class="text-amber-400 block text-xs uppercase tracking-wider">Etapa 1: Navegação no D-Pad (Controle Matricial)</strong>
+            <p class="text-xs text-slate-300"><strong class="text-white">EF01CO01:</strong> Criar e executar algoritmos em malhas cartesianas ($X, Y$), deslocando o seletor célula a célula na grade 4x3.</p>
+          </div>
+
+          <div class="bg-indigo-900/40 p-2.5 rounded-lg border border-indigo-700/40">
+            <strong class="text-sky-400 block text-xs uppercase tracking-wider">Etapa 2: Análise da Palavra & slots</strong>
+            <p class="text-xs text-slate-300"><strong class="text-white">EF01CO02:</strong> Decomposição de problemas complexos. A escrita da palavra inteira é dividida em etapas ordenadas de fonema/grafema.</p>
+          </div>
+
+          <div class="bg-indigo-900/40 p-2.5 rounded-lg border border-indigo-700/40">
+            <strong class="text-emerald-400 block text-xs uppercase tracking-wider">Etapa 3: Captura de Letras (Ação PEGAR 🧲)</strong>
+            <p class="text-xs text-slate-300"><strong class="text-white">EF01CO02:</strong> Reconhecimento de padrões gráficos para selecionar a letra correspondente e removê-la da matriz.</p>
+          </div>
+
+          <div class="bg-indigo-900/40 p-2.5 rounded-lg border border-indigo-700/40">
+            <strong class="text-rose-400 block text-xs uppercase tracking-wider">Etapa 4: Seleção Incorreta de Letra</strong>
+            <p class="text-xs text-slate-300"><strong class="text-white">Depuração Formativa (Debugging):</strong> Feedback imediato e não-punitivo para permitir que o aluno analise a falha e teste uma nova hipótese.</p>
+          </div>
         </div>
 
         <div class="bg-sky-950/60 p-4 rounded-xl border border-sky-700/50">
           <h3 class="font-extrabold text-sky-300 text-base mb-1">🔤 Habilidades de Língua Portuguesa</h3>
-          <ul class="list-disc list-inside space-y-2 text-slate-300">
-            <li><strong class="text-white">EF01LP02:</strong> Escrever, espontaneamente ou por ditado, palavras e frases de forma alfabética – usando letras e encontros vocálicos.</li>
-            <li><strong class="text-white">EF01LP08:</strong> Relacionar elementos sonoros (sílabas, fonemas, encontros vocálicos) com sua representação escrita.</li>
+          <ul class="list-disc list-inside space-y-1.5 text-xs text-slate-300">
+            <li><strong class="text-white">EF01LP02:</strong> Escrever palavras de forma alfabética – usando encontros vocálicos e consoante-vogal.</li>
+            <li><strong class="text-white">EF01LP08:</strong> Relacionar elementos sonoros (fonemas) com a representação escrita (grafemas).</li>
           </ul>
-        </div>
-
-        <div class="bg-emerald-950/60 p-4 rounded-xl border border-emerald-700/50">
-          <h3 class="font-extrabold text-emerald-300 text-base mb-1">💡 Depuração Sem Punição (Debugging Formativo)</h3>
-          <p class="text-slate-300">
-            No Guindaste das Letras, a seleção incorreta de uma letra ativa uma mensagem e som amigáveis de depuração, sem remoção de vidas ou pontuação. Isso encoraja o estudante a testar hipóteses e depurar a sua lógica de montagem.
-          </p>
         </div>
       </div>
 
@@ -389,6 +417,67 @@
         </button>
         <button id="btn-victory-replay" class="w-full bg-slate-700 hover:bg-slate-600 text-white font-bold py-2 rounded-xl text-sm">
           🔊 Ouvir Novamente
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- MODAL DE CONCLUSÃO DE NÍVEL (FIM DO NÍVEL 1) -->
+  <div id="modal-level-complete" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-slate-800 border-4 border-sky-400 rounded-3xl max-w-lg w-full p-6 shadow-2xl text-center relative animate-grab">
+      <div class="text-7xl mb-2 animate-bounce">🌟</div>
+      <h2 class="text-3xl font-black text-sky-300 mb-1">NÍVEL 1 CONCLUÍDO!</h2>
+      <p class="text-slate-200 text-sm mb-4">Você completou todos os Encontros Vocálicos com o guindaste!</p>
+
+      <div class="bg-indigo-950/80 border-2 border-indigo-500 rounded-2xl p-4 mb-5 text-left space-y-2">
+        <h3 class="text-xs font-black text-amber-300 uppercase tracking-wider flex items-center space-x-1">
+          <span>🤖</span> <span>Conquistas do Pensamento Computacional (BNCC):</span>
+        </h3>
+        <p class="text-xs text-indigo-200">
+          Você exercitou a navegação matricial (EF01CO01) e a decomposição de fonemas/grafemas (EF01CO02) com autonomia!
+        </p>
+      </div>
+
+      <p class="text-amber-300 font-bold text-sm mb-4">Deseja avançar para o Nível 2 (Palavras Dissílabas)?</p>
+
+      <div class="flex flex-col sm:flex-row gap-3">
+        <button id="btn-start-level-2" class="flex-1 bg-emerald-500 hover:bg-emerald-400 active:scale-95 text-slate-950 font-black py-3 px-4 rounded-xl shadow-lg text-sm transition border-b-4 border-emerald-700">
+          🚀 Avançar para o Nível 2 ➡️
+        </button>
+        <button id="btn-replay-level-1" class="bg-slate-700 hover:bg-slate-600 text-white font-bold py-3 px-4 rounded-xl text-sm">
+          🔄 Repetir Nível 1
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- MODAL 3: VITÓRIA FINAL DO JOGO (TÉRMINO & REINÍCIO) -->
+  <div id="modal-grand-victory" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-slate-800 border-4 border-amber-400 rounded-3xl max-w-lg w-full p-6 shadow-2xl text-center relative animate-grab">
+      <div class="text-7xl mb-2 animate-bounce">🏆</div>
+      <h2 class="text-3xl sm:text-4xl font-black text-amber-400 mb-1">PARABÉNS, CAMPEÃO!</h2>
+      <p class="text-slate-200 text-sm mb-4">Você completou TODOS os desafios do Guindaste das Letras com maestria!</p>
+
+      <div class="bg-indigo-950/80 border-2 border-indigo-500 rounded-2xl p-4 mb-5 text-left space-y-2">
+        <h3 class="text-sm font-black text-indigo-300 uppercase tracking-wider flex items-center space-x-1">
+          <span>🤖</span> <span>Conquistas do Pensamento Computacional (BNCC):</span>
+        </h3>
+        <ul class="text-xs text-indigo-200 space-y-1 list-disc list-inside">
+          <li><strong>EF01CO01:</strong> Excelente domínio de algoritmos e navegação em matriz.</li>
+          <li><strong>EF01CO02:</strong> Decomposição eficaz e reconhecimento de grafemas.</li>
+          <li><strong>Depuração Formativa:</strong> Resolução de desafios com autonomia e teste de hipóteses.</li>
+        </ul>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-3">
+        <button id="btn-restart-game" class="flex-1 bg-amber-500 hover:bg-amber-400 active:scale-95 text-slate-950 font-black py-3 px-4 rounded-xl shadow-lg text-base transition border-b-4 border-amber-700 flex items-center justify-center space-x-2">
+          <span>🔄</span>
+          <span>Reiniciar Jogo do Início</span>
+        </button>
+        <button id="btn-close-grand-victory" class="bg-slate-700 hover:bg-slate-600 text-white font-bold py-3 px-4 rounded-xl text-sm">
+          Fechar
         </button>
       </div>
     </div>
